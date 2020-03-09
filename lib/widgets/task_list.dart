@@ -21,13 +21,13 @@ class TaskList extends StatelessWidget {
                     taskData.updateTask(task);
                   }),
               onDismissed: (direction) {
-                Provider.of<TaskData>(context).removeTask(task);
+                Provider.of<TaskData>(context, listen: false).removeTask(task);
                 Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text("$task dismissed"),
+                  content: Text("${task.name} DELETED"),
                   action: SnackBarAction(
                     label: "UNDO",
                     onPressed: () {
-                      Provider.of<TaskData>(context)
+                      Provider.of<TaskData>(context, listen: false)
                           .undoRemoveTask(index, task);
                     },
                   ),
