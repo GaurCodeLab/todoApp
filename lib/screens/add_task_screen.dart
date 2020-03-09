@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoApp/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  final Function addTaskCallBack;
-
-  AddTaskScreen(this.addTaskCallBack);
-  final myController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     String newTaskTitle;
@@ -36,7 +33,6 @@ class AddTaskScreen extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             TextField(
-              controller: myController,
               autofocus: true,
               textAlign: TextAlign.center,
               onChanged: (newText) {
@@ -50,7 +46,10 @@ class AddTaskScreen extends StatelessWidget {
                 'Add',
                 style: TextStyle(color: Colors.white),
               ),
-              onPressed: () => addTaskCallBack(newTaskTitle),
+              onPressed: () {
+              newTaskTitle!=null ?  Provider.of<TaskData>(context,listen: false).addTask(newTaskTitle) :null;
+                Navigator.pop(context);
+              },
             ),
           ],
         ),

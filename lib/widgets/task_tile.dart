@@ -29,11 +29,11 @@ class TaskTile extends StatelessWidget {
                   spreadRadius: 1.0),
             ]),
         child: ListTile(
-            title: Text(
-              taskTitle,
+            title: taskTitle!=null ?  Text(
+              taskTitle ,
               style: TextStyle(
                   decoration: isChecked ? TextDecoration.lineThrough : null),
-            ),
+            ) : Text('NULL'),
             trailing: Checkbox(
               activeColor: Colors.lightBlueAccent,
               value: isChecked,
